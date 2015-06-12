@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="services.ProductoService">
+    <insert id="guardar" parameterType="bean.Producto">
+        INSERT INTO Producto(idprod,idcat,nombre,precio,stock)
+        VALUES (#{idProducto},#{idCategoria},#{nombre},#{precio},#{stock})        
+    </insert>
+    <delete id="borrar" parameterType="int">
+        DELETE FROM Producto where idprod =#{idProducto}        
+    </delete>        
+    
+    <resultMap type="bean.Producto" id="productoMap">
+        <id column="idprod" property="idProducto"/>
+        <result column="idcat" property="idCategoria"/>
+        <result column="nombre" property="nombre"/>
+        <result column="precio" property="precio"/>
+        <result column="stock" property="stock"/>
+        
+    </resultMap>
+    <select id="listar" resultMap="productoMap">
+        SELECT * FROM Producto        
+    </select>
+    
+    <update id="actualizar" parameterType="bean.Producto">
+        UPDATE Producto
+        SET idprod=#{idProducto},idcat=#{idCategoria},nombre=#{nombre},precio=#{precio},stock=#{stock}
+        WHERE idprod =#{idProducto}
+    </update>
+        
+
+</mapper>
