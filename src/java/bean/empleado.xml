@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="services.EmpleadoService">
+    <insert id="guardar" parameterType="bean.Empleado">
+        INSERT INTO Empleado(idemp,nombre,apellido,email,telefono)
+        VALUES(#{idEmpleado},#{nombre},#{apellido},#{email},#{telefono})        
+    </insert>
+
+    <delete id="eliminar" parameterType="int">
+        DELETE FROM Empleado where idemp=#{idEmpleado}        
+    </delete>
+    
+    <update id="actualizar" parameterType="bean.Empleado">
+        UPDATE Empleado               
+        SET idemp=#{idEmpleado},nombre=#{nombre},apellido=#{apellido},email=#{email},telefono=#{telefono}
+        WHERE idemp =#{idEmpleado}
+    </update>
+    
+</mapper>
